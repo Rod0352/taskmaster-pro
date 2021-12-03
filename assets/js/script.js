@@ -92,7 +92,7 @@ $(".list-group").on("click", "span", function () {
     .text()
     .trim();
 
-  // create new ioput element
+  // create new input element
   var dateInput = $("<input>")
     .attr("type", "text")
     .addClass("form-control")
