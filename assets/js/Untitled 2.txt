@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocktails Tonight</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans:wght@400;700&family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">    
+</head>
+<body>
+    <section class="hero is-primary">
+        <section class="hero is-info is-fullheight">
+            <div class="hero-head">
+                <nav class="navbar">
+                    <div class="container">
+                        <div class="navbar-brand">
+                            <a href="./index.html">
+                                <h2 class="mainTitle">Cocktails Tonight</h2>
+                            </a>
+                            <span class="navbar-burger" data-target="navbarMenuHeroB">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                        </div>
+                        <div id="navbarMenuHeroB" class="navbar-menu">
+                            <div class="navbar-end">
+                                <a class="navbar-item is-active ">
+                                    Favorites
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="level hero-body container is-widescreen ">
+                <div class="column columns is-desktop">
+                    <div class="field is grouped">                                      
+                    <br>
+                    <br>
+                    <button class="button is-link is-large has-text-centered" id="random-btn btn-search">
+                        <p class="title">
+                            Random Cocktail
+                        </p>                                          
+                    </button>
+                    <div class="card drink-card" id="random-cocktail">
+                        <h3>placeholder for drink name</h3>
+                    </div>
+                    <br>
+                    <br>
+                    <div>                
+                    <button id="custom-btn" class="button is-link is-large has-text-centered ">
+                        <p class="title">
+                            Did you Know
+                        </p>
+                    </button>
+                    </div>  
+                    <div id="drinkOptions" class="select">
+                        <select name="drinks" id="drinks" multiple size="4">
+                          <option class="drink" value="Scotch">Scotch</option>
+                          <option class="drink" value="Gin">Gin</option>
+                          <option class="drink" value="Vodka">Vodka</option>
+                          <option class="drink" value="Rum">Rum</option>
+                          <option class="drink" value="Tequila">Tequila</option>
+                          <option class="drink" value="Whiskey">Whiskey</option>
+                          <option class="drink" value="Brandy">Brandy</option>
+                        </select>
+                    </div>
+                <div id="choice">
+                    <p></p>
+                <br>
+                <br>                              
+                <button class="button is-link is-large has-text-centered" id="recipe-btn btn-search">
+                    <p class="title">
+                        Random Recipe
+                    </p>                                          
+                </button>
+                <div class="card recipe-card">
+                    <h3>placeholder for recipe name</h3>
+                </div>
+                <br>
+                <div class="modal" id="myModal">
+                    <div class="modal-background"></div>
+                    <div class="modal-card">
+                      <header class="modal-card-head">
+                        <p class="modal-card-title"> </p>
+                        <button class="delete" aria-label="close" data-bulma-modal="close"></button>
+                      </header>
+                      <section class="modal-card-body">
+                        <p class="modal-body-text"></p>
+                      </section>
+                      <footer class="modal-card-foot">
+                        <!-- <button class="button is-success">Save to Favorites</button> -->
+                        <button class="button" data-bulma-modal="close">Close</button>
+                      </footer>
+                    </div>
+                  </div>
+                  
+            </div>
+        </div>
+    </div>
+        </section>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="./assets/js/script.js"></script>
+        <script src="./assets/js/api-call.js"></script>
+</body>
+</html>
+
+
+$("drinks").click(function () {
+    
+    //retrieve text from textbox
+    var drinksResult = getDrinkByIngred(this, value);
+    
+  
+});
+document.getElementById('drinks').addEventListener('change', function () {
+    getDrinkByIngred(this.value);});
+
+function getDrinkByIngred(value) {
+
+    var apiUrlIngredients = "https://www.thecocktaildb.com/api/json/v1/1/search.php?i=" + value;
+
+    fetch(apiUrlIngredients).then(function (response) {
+        response.json().then(function (res) {
+            console.log(res);
+            jsonData = res;
+            $('.modal-card-title').text(res.ingredients[0].strIngredient);
+            $('.modal-body-text').text(res.ingredients[0].strDescription);
+            return res.ingredients[0].strIngredient;
+        });
+    });
+};
+
+
+
+
+class BulmaModal {
+	constructor(selector) {
+		this.elem = document.querySelector(selector)
+		this.close_data()
+	}
+	
+	show() {
+		this.elem.classList.toggle('is-active')
+		this.on_show()
+	}
+	
+	close() {
+		this.elem.classList.toggle('is-active')
+		this.on_close()
+	}
+	
+	close_data() {
+		var modalClose = this.elem.querySelectorAll("[data-bulma-modal='close'], .modal-background")
+		var that = this
+		modalClose.forEach(function(e) {
+			e.addEventListener("click", function() {
+				
+				that.elem.classList.toggle('is-active')
+
+				var event = new Event('modal:close')
+
+				that.elem.dispatchEvent(event);
+			})
+		})
+	}
+	
+	on_show() {
+		var event = new Event('modal:show')
+	
+		this.elem.dispatchEvent(event);
+	}
+	
+	on_close() {
+		var event = new Event('modal:close')
+	
+		this.elem.dispatchEvent(event);
+	}
+	
+	addEventListener(event, callback) {
+		this.elem.addEventListener(event, callback)
+	}
+}
+
+var btn = document.querySelector("#drinks")
+var mdl = new BulmaModal("#myModal")
+
+btn.addEventListener("click", function () {
+	mdl.show()
+})
+
+mdl.addEventListener('modal:show', function() {
+	console.log("opened")
+})
+
+mdl.addEventListener("modal:close", function() {
+	console.log("closed")
+})

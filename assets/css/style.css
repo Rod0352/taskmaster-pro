@@ -9,12 +9,15 @@ h5,
 h6{
   font-family: "Staatliches", sans-serif;
 }
-
+.hero{
+  background-color: lavenderblush;
+  color: lightcoral;
+}
 ul.list-group {
   min-height: 130px;
 }
 .dropover{
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color:lightcoral;
 }
 .dropover-active{
   background-color: rgba(0, 0, 0, 0.9);
