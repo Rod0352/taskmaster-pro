@@ -1,23 +1,29 @@
-const express = require('express');
-// const mongoose = require('mongoose');
+const express = require("express");
+const logger = require("morgan");
+const mongoose = require("mongoose");
+const compression = require("compression");
+
+const PORT = process.env.PORT || 3001;
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/taskmaster-pro";
 
 const app = express();
 
-const PORT = process.env.PORT || 3001;
+app.use(logger("dev"));
 
-app.use(express.json());
+app.use(compression());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.json());
 
-// app.use(require('./routes'));
+app.use(express.static("Develop/public"));
 
-// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:/social-network-api', {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// });
+mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    // useFindAndModify: false,
+    useUnifiedTopology: true
+});
 
-// mongoose.set('debug', true);
-
+// routes
+app.use(require("./Develop/routes/api"));
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`);
-  });
+});
