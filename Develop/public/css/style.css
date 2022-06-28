@@ -1,26 +1,41 @@
-body{
-  font-family: 'Tapestry', cursive;}
+body {
+  background: #93C7DB;
+  background: -webkit-radial-gradient(top, #93C7DB, #096982);
+  background: -moz-radial-gradient(top, #93C7DB, #096982);
+  background: radial-gradient(to bottom, #93C7DB, #096982);
+  
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
-h6{
-  font-family: 'Tapestry', cursive;}
-.hero{
-  background-color: rgb(83, 119, 185);;
-  color: rgb(243, 255, 17);
+h6 {
+  font-family: 'Tapestry', cursive;
 }
+
+.hero {
+  background: #93C7DB;
+  background: -webkit-radial-gradient(top, #93C7DB, #096982);
+  background: -moz-radial-gradient(top, #93C7DB, #096982);
+  background: radial-gradient(to bottom, #93C7DB, #096982);
+  color: rgb(170, 245, 255);
+}
+
 ul.list-group {
   min-height: 130px;
 }
-.dropover{
+
+.dropover {
+  background-color: rgb(11, 38, 58);
+}
+
+.dropover-active {
   background-color:rgb(11, 38, 58);
 }
-.dropover-active{
-  background-color: rgb(79, 20, 141);
-}
-.bottom-trash{
+
+.bottom-trash {
   opacity: 0;
   color: #f1f1f1;
   font-size: 2.3rem;
@@ -29,27 +44,37 @@ ul.list-group {
   transition: all .5s ease-in-out;
   background-color: rgba(234, 0, 39, 0.7);
 }
-.bottom-trash-drag{
+
+.bottom-trash-drag {
   transform: translateY(0);
   opacity: 1;
 }
-.bottom-trash-active{
+
+.bottom-trash-active {
   background-color: rgba(234, 0, 39, 1);
 }
-.btn-add, .btn-save{
+
+.btn-add,
+.btn-save {
   background-color: #FA8BFF;
-  background-image: linear-gradient(45deg,#FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
+  background-image: linear-gradient(45deg, #2BDA6D 33%, #05cb0f 52%);
   transition: all .5s ease-out;
   background-size: 1px 100px;
   background-position: 0 -10px;
 }
-.btn-close, .btn-delete{
+
+.btn-close,
+.btn-delete {
   background-color: #EA0028;
-  background-image: linear-gradient(180deg, #FF9A8B 0%, #EA0028 100%);
+  background-image: linear-gradient(180deg,  #FC7003, #d10a0a);
   transition: all .5s ease-out;
   background-size: 1px 100px;
   background-position: 0 -10px;
 }
-.btn-add:hover,  .btn-close:hover, .btn-delete:hover, .btn-save:hover{
+
+.btn-add:hover,
+.btn-close:hover,
+.btn-delete:hover,
+.btn-save:hover {
   background-position: 1px -50px;
 }
