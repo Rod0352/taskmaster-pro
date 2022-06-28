@@ -1,32 +1,30 @@
 body{
-  font-family: "Open Sans", sans-serif;
-}
+  font-family: 'Tapestry', cursive;}
 h1,
 h2,
 h3,
 h4,
 h5,
 h6{
-  font-family: "Staatliches", sans-serif;
-}
+  font-family: 'Tapestry', cursive;}
 .hero{
-  background-color: lavenderblush;
-  color: lightcoral;
+  background-color: rgb(83, 119, 185);;
+  color: rgb(243, 255, 17);
 }
 ul.list-group {
   min-height: 130px;
 }
 .dropover{
-  background-color:lightcoral;
+  background-color:rgb(11, 38, 58);
 }
 .dropover-active{
-  background-color: lightcoral;
+  background-color: rgb(79, 20, 141);
 }
 .bottom-trash{
   opacity: 0;
   color: #f1f1f1;
   font-size: 2.3rem;
-  font-family: "Staatliches", sans-serif;
+  font-family: 'Tapestry', cursive;
   transform: translateY(150px);
   transition: all .5s ease-in-out;
   background-color: rgba(234, 0, 39, 0.7);
